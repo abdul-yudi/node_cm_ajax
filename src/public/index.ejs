@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="main-html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neighbourhood | Register</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.esquiresg.com/wp-content/themes/genesis-esq/build/images/favicon-192.png"
+      sizes="192x192"
+    />
+  </head>
+  <body>
+    <div class="logo logo-mobile">
+      <img src="assets/images/logo.png" alt="" srcset="" />
+    </div>
+    <div class="building-wrapper">
+      <div class="logo logo-desktop">
+        <img src="assets/images/logo.png" alt="" srcset="" />
+      </div>
+      <div class="proof-building"></div>
+      <div class="content-wrapper">
+        <div class="intro">
+          Your Destination for<br />
+          Digital Discovery
+        </div>
+        <div class="headline">
+          Talks, Performaces,<br />Workshop, Games<br />
+          And Much More
+        </div>
+        <div class="form-registration">
+          <p>Register today for early access and updates:</p>
+          <!-- <iframe src="https://mtrphn.com/neighbourhood-registration/form-subscribe.php" width="100%" height="137" frameborder="0"></iframe> -->
+
+          <form class="js-cm-form" id="subForm">
+            <input
+              aria-label="Name"
+              id="fieldName"
+              maxlength="200"
+              name="cm-name"
+              style="display: none;"
+            />
+            <input
+              aria-label="First name"
+              id="fieldjjmddr"
+              maxlength="200"
+              name="cm-f-jjmddr"
+              required=""
+              placeholder="First Name"
+            />
+            <input
+              aria-label="Last name"
+              id="fieldjjmddy"
+              maxlength="200"
+              name="cm-f-jjmddy"
+              placeholder="Last Name"
+            />
+            <input
+              autocomplete="Email"
+              aria-label="Email"
+              class="js-cm-email-input qa-input-email"
+              id="fieldEmail"
+              maxlength="200"
+              name="cm-ykitdiu-ykitdiu"
+              required=""
+              type="email"
+              placeholder="Email"
+            />
+            <button type="submit">Submit</button>
+          </form>
+          <div class="notif-submit fail">
+            Sorry we had error connect to server.
+          </div>
+        </div>
+        <div class="building-windows"></div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+  $("#fieldjjmddr, #fieldjjmddy").each(function () {
+    $(this).on("blur", function () {
+      var firstName = $("#fieldjjmddr").val();
+      var lastName = $("#fieldjjmddy").val();
+      $("#fieldName").val(firstName + " " + lastName);
+    });
+  });
+
+  $("#subForm").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+      method: "POST",
+      url:
+        "https://api.createsend.com/api/v3.2/subscribers/43c9ac2da554fa06bd35b6ac5a0fda12",
+      crossDomain: true,
+      contentType: "application/json",
+      dataType: "json",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers":
+          "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+        apiKey:
+          "SBRwQ/pZh9drGKQbA/wfizilUw3vx11yFfOxwg4tWau7uccHjPWK4ykNENNcYvCn8dI8x2NDmZb+V13zBbGxngoQwS0aGR3Ydtb+iIosisZRlEfAcLR+SecZuj/JxvpcrphGgxTv7ugg336/Kp8HJw=="
+      },
+      data: JSON.stringify({
+        name: $("#fieldName").val(),
+        email: $("#fieldEmail").val()
+      }),
+      success: function (data) {
+        $("#subForm").css("display", "none");
+        $(".notif-submit").fadeIn(300);
+        console.log(data);
+      }
+    });
+  });
+</script>
